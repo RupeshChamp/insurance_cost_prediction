@@ -16,7 +16,7 @@ class InsuranceApp(QMainWindow):
 
         # Load the trained model
         try:
-            self.model = joblib.load("medical_insurance_xgb_model.pkl")
+            self.model = joblib.load("medical_insurance_best_model.pkl")
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Model file not found! Please save your model first.\n{e}")
             sys.exit()
@@ -111,10 +111,10 @@ class InsuranceApp(QMainWindow):
             smoker_encoded = 1 if smoker == 'yes' else 0
 
             # One-Hot encoding for regions
-            region_northeast = True if region == 'northeast' else False
-            region_northwest = True if region == 'northwest' else False
-            region_southeast = True if region == 'southeast' else False
-            region_southwest = True if region == 'southwest' else False
+            region_northeast = 1 if region == 'northeast' else 0
+            region_northwest = 1 if region == 'northwest' else 0
+            region_southeast = 1 if region == 'southeast' else 0
+            region_southwest = 1 if region == 'southwest' else 0
 
             # Create DataFrame with exact training columns order
             input_data = pd.DataFrame([[
